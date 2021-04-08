@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Recipe } from './recipe.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +9,34 @@ export class RecipesService {
     {
       id: 'r1',
       title: 'Schnitzel',
-      imageUrl: 'https://www.thespruceeats.com/thmb/cckc3_4QUQ79kSFhcLPM8xg9F3g=/3797x2848/smart/filters:no_upscale()/wiener-schnitzel-recipe-1447089-Hero-5b587d6c46e0fb0071b0059d.jpg',
-      ingredients: ['French Fries', 'Meat', 'Salad']
+      imageUrl: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=500&q=60',
+      ingredients: ['Leaf', 'egg','Salad']
     },
     {
       id: 'r2',
-      title: 'Spaghetti',
-      imageUrl: 'https://www.spendwithpennies.com/wp-content/uploads/2019/03/Spaghetti-and-Meatballs-SpendWithPennies-4.jpg',
-      ingredients: ['Spaghetti', 'Meat', 'Tomatoes']
+      title: 'Schnitzel',
+      imageUrl: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTJ8fHxlbnwwfHx8&auto=format&fit=crop&w=500&q=60',
+      ingredients: ['Sprout', 'Yogurt','Beans']
     }
-  ];
+      ];
 
   constructor() { }
 
-  getAllRecipes(): Recipe[] {
-    return [... this.recipes];
+  getAllRecipes() {
+    return [...this.recipes];
   }
-  getRecipe(recipeId: string): Recipe {
+
+  getRecipe(recipeId: string) {
     return {
       ...this.recipes.find(recipe => {
         return recipe.id === recipeId;
       })
     };
+  }
+
+  deleteRecipe(recipeId: string) {
+    this.recipes = this.recipes.filter(recipe => {
+      return recipe.id !== recipeId;
+    });
   }
 }
